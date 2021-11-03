@@ -1,0 +1,17 @@
+main {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  max-width: 600px;
+  border: 2px solid dimgray;
+  margin-inline: auto;
+  margin-top: 2em;
+}
+
+.cell {
+  display: grid;
+  aspect-ratio: 1;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+}
