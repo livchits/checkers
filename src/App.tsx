@@ -13,6 +13,9 @@ const cells = [...Array(ROWS * COLUMNS)].map((_, index) => ({
 }));
 
 function App() {
+  const whitePoints =
+    (COLUMNS * 3) / 2 - cells.filter(({ peon }) => peon === 'B').length;
+
   return (
     <main>
       {cells.map(({ cellNumber, peon, backgroundColor }) => (
