@@ -15,3 +15,11 @@ main {
   align-content: center;
   cursor: pointer;
 }
+
+.bg-light {
+  background-color: papayawhip;
+}
+
+.bg-dark {
+  background-color: darkgoldenrod;
+}

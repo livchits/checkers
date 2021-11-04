@@ -18,13 +18,7 @@ function App() {
   return (
     <main>
       {cells.map(({ cellNumber, peon, backgroundColor }) => (
-        <div
-          key={cellNumber}
-          className='cell'
-          style={{
-            backgroundColor,
-          }}
-        >
+        <div key={cellNumber} className={`cell ${backgroundColor}`}>
           {peon}
         </div>
       ))}
