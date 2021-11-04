@@ -7,6 +7,7 @@ import { Cell } from './types';
 
 const ROWS = 8;
 const COLUMNS = 10;
+const peonsPerColor = (COLUMNS * 3) / 2;
 
 const cells: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
   cellNumber: index,
@@ -15,7 +16,6 @@ const cells: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
 }));
 
 function App() {
-  const peonsPerColor = (COLUMNS * 3) / 2;
   const whitePoints = peonsPerColor - getPeonsQuantityByColors(cells, 'B');
   const blackPoints = peonsPerColor - getPeonsQuantityByColors(cells, 'W');
 
