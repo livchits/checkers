@@ -1,8 +1,8 @@
 import { Cell, PeonsColor } from './../types';
 
 export default function getPeonsQuantityByColors(
-  cells: Cell[],
+  board: Cell[],
   peonColor: PeonsColor
 ) {
-  return cells.filter(({ peon }) => peon === peonColor).length;
+  return board.filter(({ peon }) => peon === peonColor).length;
 }

@@ -9,7 +9,7 @@ const ROWS = 8;
 const COLUMNS = 10;
 const peonsPerColor = (COLUMNS * 3) / 2;
 
-const cells: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
+const initialBoard: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
   cellNumber: index,
   peon: getPeon(index, COLUMNS, ROWS),
   backgroundColor: getCellBackground(index, COLUMNS),
@@ -22,7 +22,7 @@ function App() {
   return (
     <main>
       <section className='board'>
-        {cells.map(({ cellNumber, peon, backgroundColor }) => (
+        {board.map(({ cellNumber, peon, backgroundColor }) => (
           <div key={cellNumber} className={`cell ${backgroundColor}`}>
             {peon}
           </div>
