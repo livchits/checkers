@@ -6,4 +6,5 @@ export interface Cell {
   cellNumber: number;
   peon: PeonsColor | null;
   backgroundColor: CellBackground;
+  selected: boolean;
 }

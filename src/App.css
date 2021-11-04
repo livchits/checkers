@@ -26,3 +26,7 @@ main {
 .bg-dark {
   background-color: darkgoldenrod;
 }
+
+.selected {
+  color: red;
+}
