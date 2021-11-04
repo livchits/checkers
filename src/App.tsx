@@ -18,11 +18,18 @@ function App() {
 
   return (
     <main>
-      {cells.map(({ cellNumber, peon, backgroundColor }) => (
-        <div key={cellNumber} className={`cell ${backgroundColor}`}>
-          {peon}
-        </div>
-      ))}
+      <section className='board'>
+        {cells.map(({ cellNumber, peon, backgroundColor }) => (
+          <div key={cellNumber} className={`cell ${backgroundColor}`}>
+            {peon}
+          </div>
+        ))}
+      </section>
+      <section>
+        <h2>Points:</h2>
+        <p>{`White: ${whitePoints}`}</p>
+        <p>{`Black: ${blackPoints}`}</p>
+      </section>
     </main>
   );
 }
