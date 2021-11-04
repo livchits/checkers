@@ -1,9 +1,9 @@
+import * as React from 'react';
 import './App.css';
-
-import getPeon from './utils/getPeon';
-import getCellBackground from './utils/getCellBackground';
-import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
 import { Cell } from './types';
+import getCellBackground from './utils/getCellBackground';
+import getPeon from './utils/getPeon';
+import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
 
 const ROWS = 8;
 const COLUMNS = 10;
@@ -16,8 +16,10 @@ const initialBoard: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
 }));
 
 function App() {
-  const whitePoints = peonsPerColor - getPeonsQuantityByColors(cells, 'B');
-  const blackPoints = peonsPerColor - getPeonsQuantityByColors(cells, 'W');
+  const [board, setBoard] = React.useState(initialBoard);
+
+  const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'B');
+  const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'W');
 
   return (
     <main>
