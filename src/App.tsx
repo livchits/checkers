@@ -6,9 +6,7 @@ import getCellBackground from './utils/getCellBackground';
 const ROWS = 8;
 const COLUMNS = 10;
 
-const cellsQuantity = ROWS * COLUMNS;
-
-const cells = [...Array(cellsQuantity)].map((_, index) => ({
+const cells = [...Array(ROWS * COLUMNS)].map((_, index) => ({
   cellNumber: index,
   peon: getPeon(index, COLUMNS, ROWS),
   backgroundColor: getCellBackground(index, COLUMNS),
