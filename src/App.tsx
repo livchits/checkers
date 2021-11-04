@@ -1,7 +1,7 @@
 import './App.css';
 
-import setPeon from './utils/setPeon';
-import setCellBackground from './utils/setCellBackground';
+import getPeon from './utils/getPeon';
+import getCellBackground from './utils/getCellBackground';
 
 const ROWS = 8;
 const COLUMNS = 10;
@@ -10,8 +10,8 @@ const cellsQuantity = ROWS * COLUMNS;
 
 const cells = [...Array(cellsQuantity)].map((_, index) => ({
   cellNumber: index,
-  peon: setPeon(index, COLUMNS, ROWS),
-  backgroundColor: setCellBackground(index, COLUMNS),
+  peon: getPeon(index, COLUMNS, ROWS),
+  backgroundColor: getCellBackground(index, COLUMNS),
 }));
 
 function App() {

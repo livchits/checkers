@@ -1,4 +1,4 @@
-export default function setPeon(
+export default function getPeon(
   cellNumber: number,
   columns: number,
   rows: number
