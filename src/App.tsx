@@ -27,8 +27,13 @@ function App() {
 
   const selectPeon = (cellNumber: number) => {
     const newBoard = [...board];
-    //there isn't a selected peon and there is a peon in the cell
-    if (!selectedPeon.current && board[cellNumber].peon) {
+    const clickedCell = board[cellNumber];
+
+    //the user clicked over a peon of wrong color
+    if (clickedCell.peon !== colorPlaying.current) {
+      return;
+    } else if (!selectedPeon.current && clickedCell.peon) {
+      //there isn't a selected peon and there is a peon in the cell
       newBoard[cellNumber].selected = true;
       selectedPeon.current = cellNumber;
       //the user is clicking on the already selected peon
