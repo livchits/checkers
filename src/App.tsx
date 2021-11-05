@@ -29,14 +29,14 @@ function App() {
     const newBoard = [...board];
     const clickedCell = board[cellNumber];
 
-    //the user clicked over a peon of wrong color
+    //the user clicked over a peon of wrong color. Not it's turn
     if (clickedCell.peon !== colorPlaying.current) {
       return;
+      //there isn't a selected peon and there is a peon in the cell. Correct selection
     } else if (!selectedPeon.current && clickedCell.peon) {
-      //there isn't a selected peon and there is a peon in the cell
       newBoard[cellNumber].selected = true;
       selectedPeon.current = cellNumber;
-      //the user is clicking on the already selected peon
+      //the user is clicking on the already selected peon, thus it's deselected
     } else if (selectedPeon.current === cellNumber) {
       newBoard[cellNumber].selected = false;
       selectedPeon.current = null;
