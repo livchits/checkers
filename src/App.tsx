@@ -4,6 +4,7 @@ import { Cell, PeonsColor } from './types';
 import getCellBackground from './utils/getCellBackground';
 import getPeon from './utils/getPeon';
 import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
+import getPossibleMoves from './utils/getPossibleMoves';
 
 const ROWS = 8;
 const COLUMNS = 10;
@@ -24,6 +25,7 @@ function App() {
 
   const selectedPeon = React.useRef<number | null>(null);
   const colorPlaying = React.useRef<PeonsColor>('white');
+  const possibleMoves = React.useRef<number[]>();
 
   const selectPeon = (cellNumber: number) => {
     const newBoard = [...board];
@@ -36,6 +38,7 @@ function App() {
     } else if (!selectedPeon.current && clickedCell.peon) {
       newBoard[cellNumber].selected = true;
       selectedPeon.current = cellNumber;
+      possibleMoves.current = getPossibleMoves(cellNumber, board);
       //the user is clicking on the already selected peon, thus it's deselected
     } else if (selectedPeon.current === cellNumber) {
       newBoard[cellNumber].selected = false;
