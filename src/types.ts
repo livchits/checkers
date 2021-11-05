@@ -1,4 +1,4 @@
-export type PeonsColor = 'W' | 'B';
+export type PeonsColor = 'white' | 'black';
 
 export type CellBackground = 'bg-light' | 'bg-dark';
 

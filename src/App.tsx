@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import { Cell } from './types';
+import { Cell, PeonsColor } from './types';
 import getCellBackground from './utils/getCellBackground';
 import getPeon from './utils/getPeon';
 import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
@@ -19,10 +19,11 @@ const initialBoard: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
 function App() {
   const [board, setBoard] = React.useState(initialBoard);
 
-  const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'B');
-  const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'W');
+  const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'black');
+  const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'white');
 
   const selectedPeon = React.useRef<number | null>(null);
+  const colorPlaying = React.useRef<PeonsColor>('white');
 
   const selectPeon = (cellNumber: number) => {
     const newBoard = [...board];
@@ -50,6 +51,9 @@ function App() {
             {peon}
           </div>
         ))}
+      </section>
+      <section className='turn'>
+        It's the turn of {colorPlaying.current}
       </section>
       <section>
         <h2>Points:</h2>

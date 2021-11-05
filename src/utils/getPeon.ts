@@ -7,13 +7,13 @@ export default function getPeon(
     Math.floor(cellNumber / columns + cellNumber) % 2 !== 0 &&
     cellNumber < columns * 3
   ) {
-    return 'W';
+    return 'white';
   }
   if (
     Math.floor(cellNumber / columns + cellNumber) % 2 !== 0 &&
     cellNumber >= rows * columns - columns * 3
   ) {
-    return 'B';
+    return 'black';
   }
   return null;
 }

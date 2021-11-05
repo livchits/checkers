@@ -30,3 +30,7 @@ main {
 .selected {
   color: red;
 }
+
+.turn {
+  margin-block: 1em;
+}
