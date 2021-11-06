@@ -4,7 +4,7 @@ import { Cell, PeonsColor } from './types';
 import getCellBackground from './utils/getCellBackground';
 import getPeon from './utils/getPeon';
 import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
-import getPossibleMoves from './utils/getPossibleMoves';
+import getValidMoves from './utils/getValidMoves';
 
 const ROWS = 8;
 const COLUMNS = 10;
@@ -38,7 +38,7 @@ function App() {
     } else if (!selectedPeon.current && clickedCell.peon) {
       newBoard[cellNumber].selected = true;
       selectedPeon.current = cellNumber;
-      possibleMoves.current = getPossibleMoves(cellNumber, board);
+      possibleMoves.current = getValidMoves(cellNumber, board);
       //the user is clicking on the already selected peon, thus it's deselected
     } else if (selectedPeon.current === cellNumber) {
       newBoard[cellNumber].selected = false;
