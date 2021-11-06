@@ -27,22 +27,35 @@ function App() {
   const colorPlaying = React.useRef<PeonsColor>('white');
   const possibleMoves = React.useRef<number[]>();
 
-  const selectPeon = (cellNumber: number) => {
-    const newBoard = [...board];
+  const handlePlay = (cellNumber: number) => {
     const clickedCell = board[cellNumber];
+    const newBoard = [...board];
 
-    //the user clicked over a peon of wrong color. Not users's turn
-    if (clickedCell.peon !== colorPlaying.current) {
-      return;
-      //there isn't a selected peon and there is a peon in the cell. Correct selection
-    } else if (!selectedPeon && clickedCell.peon) {
-      newBoard[cellNumber].selected = true;
-      possibleMoves.current = getValidMoves(cellNumber, board);
-      //the user clicked on an already selected peon, thus it's deselected
-    } else if (selectedPeon?.cellNumber === cellNumber) {
-      newBoard[cellNumber].selected = false;
+    if (!selectedPeon) {
+      //the user clicked on a peon of wrong color or empty cell
+      if (clickedCell.peon !== colorPlaying.current) {
+        return;
+        //there isn't a selected peon and there is a peon in the cell. Correct selection
+      } else {
+        newBoard[cellNumber].selected = true;
+        possibleMoves.current = getValidMoves(cellNumber, board);
+        setBoard(newBoard);
+      }
+      //there is a selected peon
+    } else {
+      //make move
+      if (possibleMoves.current?.includes(cellNumber)) {
+        newBoard[cellNumber].peon = colorPlaying.current;
+        newBoard[selectedPeon.cellNumber].peon = null;
+        newBoard[selectedPeon.cellNumber].selected = false;
+        colorPlaying.current =
+          colorPlaying.current === 'white' ? 'black' : 'white';
+        //the user clicked on an already selected peon, thus it's deselected
+      } else if (cellNumber === selectedPeon.cellNumber) {
+        newBoard[cellNumber].selected = false;
+      }
+      setBoard(newBoard);
     }
-    setBoard(newBoard);
   };
 
   return (
@@ -52,7 +65,7 @@ function App() {
           <div
             key={cellNumber}
             className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
-            onClick={() => selectPeon(cellNumber)}
+            onClick={() => handlePlay(cellNumber)}
           >
             {peon}
           </div>
