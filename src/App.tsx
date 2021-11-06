@@ -22,8 +22,8 @@ function App() {
 
   const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'black');
   const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'white');
+  const selectedPeon = board.find(({ selected }) => selected === true);
 
-  const selectedPeon = React.useRef<number | null>(null);
   const colorPlaying = React.useRef<PeonsColor>('white');
   const possibleMoves = React.useRef<number[]>();
 
@@ -31,18 +31,16 @@ function App() {
     const newBoard = [...board];
     const clickedCell = board[cellNumber];
 
-    //the user clicked over a peon of wrong color. Not it's turn
+    //the user clicked over a peon of wrong color. Not users's turn
     if (clickedCell.peon !== colorPlaying.current) {
       return;
       //there isn't a selected peon and there is a peon in the cell. Correct selection
-    } else if (!selectedPeon.current && clickedCell.peon) {
+    } else if (!selectedPeon && clickedCell.peon) {
       newBoard[cellNumber].selected = true;
-      selectedPeon.current = cellNumber;
       possibleMoves.current = getValidMoves(cellNumber, board);
-      //the user is clicking on the already selected peon, thus it's deselected
-    } else if (selectedPeon.current === cellNumber) {
+      //the user clicked on an already selected peon, thus it's deselected
+    } else if (selectedPeon?.cellNumber === cellNumber) {
       newBoard[cellNumber].selected = false;
-      selectedPeon.current = null;
     }
     setBoard(newBoard);
   };
