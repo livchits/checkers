@@ -16,7 +16,10 @@ export default function getValidMoves(cellNumber: number, board: Cell[]) {
       //check if the move is an enemy peon or an empty cell
       //if it's an enemy return the cell after take it
       !board[move].peon ? move : move - cellNumber + move
-    );
+    )
+    //remove moves with peons
+    .filter((move) => board[move].peon === null);
+
   //check if there is a move that implies take an enemy peon
   const moveImpliesTakeEnemyPeon = (move: number) =>
     Math.abs(cellNumber - move) > 11;
