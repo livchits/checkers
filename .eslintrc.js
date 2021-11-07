@@ -8,11 +8,17 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -45,7 +51,6 @@ module.exports = {
         jsxSingleQuote: true,
       },
     ],
-    'react/react-in-jsx-scope': 'error',
     'jsx-a11y/no-onchange': 'off',
   },
   overrides: [

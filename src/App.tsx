@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import './App.css';
 import Points from './components/Points';
 import { COLUMNS, ROWS } from './constants';
@@ -69,6 +70,7 @@ function App() {
     ({ cellNumber, peon, backgroundColor, selected }) => (
       <div
         key={cellNumber}
+        aria-hidden='true'
         className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
         onClick={() => handlePlay(cellNumber)}
       >
@@ -80,11 +82,11 @@ function App() {
   return (
     <main>
       <section className='board'>{checkersBoard}</section>
-      <section className='turn'>It's {colorPlaying.current}'s turn</section>
+      <section className='turn'>{`It's ${colorPlaying.current}'s turn`}</section>
       <Points
-        whitePoints={whitePoints}
         blackPoints={blackPoints}
         peonsPerColor={peonsPerColor}
+        whitePoints={whitePoints}
       />
     </main>
   );
