@@ -22,6 +22,7 @@ function App() {
 
   const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'black');
   const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'white');
+
   const selectedPeon = board.find(({ selected }) => selected === true);
 
   const colorPlaying = React.useRef<PeonsColor>('white');
@@ -31,39 +32,40 @@ function App() {
     const clickedCell = board[cellNumber];
     const newBoard = [...board];
 
-    if (!selectedPeon) {
-      //the user clicked on a peon of wrong color or empty cell
-      if (clickedCell.peon !== colorPlaying.current) {
-        return;
-        //there isn't a selected peon and there is a peon in the cell. Correct selection
-      } else {
-        newBoard[cellNumber].selected = true;
-        possibleMoves.current = getValidMoves(cellNumber, board);
-        setBoard(newBoard);
-      }
-      //there is a selected peon
-    } else {
-      //make move
-      if (possibleMoves.current?.includes(cellNumber)) {
-        newBoard[cellNumber].peon = colorPlaying.current;
-        newBoard[selectedPeon.cellNumber].peon = null;
-        newBoard[selectedPeon.cellNumber].selected = false;
-
-        //check if the move implies take a peon
-        if (Math.abs(selectedPeon.cellNumber - cellNumber) > COLUMNS + 1) {
-          const cellOfTakenPeon =
-            board[(selectedPeon.cellNumber - cellNumber) / 2 + cellNumber];
-          newBoard[cellOfTakenPeon.cellNumber].peon = null;
-        }
-
-        colorPlaying.current =
-          colorPlaying.current === 'white' ? 'black' : 'white';
-        //the user clicked on an already selected peon, thus it's deselected
-      } else if (cellNumber === selectedPeon.cellNumber) {
-        newBoard[cellNumber].selected = false;
-      }
-      setBoard(newBoard);
+    //the user clicked on a peon of wrong color or on an empty cell
+    if (!selectedPeon && clickedCell.peon !== colorPlaying.current) {
+      return;
     }
+
+    //there isn't a selected peon and there is a peon in the cell. Correct selection
+    if (!selectedPeon) {
+      newBoard[cellNumber].selected = true;
+      possibleMoves.current = getValidMoves(cellNumber, board);
+      return setBoard(newBoard);
+    }
+
+    //there is a selected peon and clicked cell is a possible move
+    if (possibleMoves.current?.includes(cellNumber)) {
+      newBoard[cellNumber].peon = colorPlaying.current;
+      newBoard[selectedPeon.cellNumber].peon = null;
+      newBoard[selectedPeon.cellNumber].selected = false;
+
+      //check if the move implies take a peon
+      if (Math.abs(selectedPeon.cellNumber - cellNumber) > COLUMNS + 1) {
+        const cellOfTakenPeon =
+          board[(selectedPeon.cellNumber - cellNumber) / 2 + cellNumber];
+        newBoard[cellOfTakenPeon.cellNumber].peon = null;
+      }
+
+      colorPlaying.current =
+        colorPlaying.current === 'white' ? 'black' : 'white';
+    }
+
+    //the user clicked on an already selected peon, thus it's deselected
+    if (cellNumber === selectedPeon.cellNumber) {
+      newBoard[cellNumber].selected = false;
+    }
+    return setBoard(newBoard);
   };
 
   return (
@@ -84,8 +86,14 @@ function App() {
       </section>
       <section>
         <h2>Points:</h2>
-        <p>{`White: ${whitePoints}`}</p>
-        <p>{`Black: ${blackPoints}`}</p>
+        <p>
+          {`White: ${whitePoints}`}
+          <span>{whitePoints === peonsPerColor && 'White wins!'}</span>
+        </p>
+        <p>
+          {`Black: ${blackPoints}`}
+          <span>{blackPoints === peonsPerColor && 'Black wins!'}</span>
+        </p>
       </section>
     </main>
   );
