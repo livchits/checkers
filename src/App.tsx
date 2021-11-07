@@ -48,6 +48,14 @@ function App() {
         newBoard[cellNumber].peon = colorPlaying.current;
         newBoard[selectedPeon.cellNumber].peon = null;
         newBoard[selectedPeon.cellNumber].selected = false;
+
+        //check if the move implies take a peon
+        if (Math.abs(selectedPeon.cellNumber - cellNumber) > COLUMNS + 1) {
+          const cellOfTakenPeon =
+            board[(selectedPeon.cellNumber - cellNumber) / 2 + cellNumber];
+          newBoard[cellOfTakenPeon.cellNumber].peon = null;
+        }
+
         colorPlaying.current =
           colorPlaying.current === 'white' ? 'black' : 'white';
         //the user clicked on an already selected peon, thus it's deselected
