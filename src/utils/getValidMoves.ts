@@ -1,7 +1,4 @@
-import { COLUMNS, ROWS } from '../constants';
 import { Cell } from '../types';
-
-const moveIsInBoard = (move: number) => move < ROWS * COLUMNS - 1;
 
 export default function getValidMoves(cellNumber: number, board: Cell[]) {
   const selectedPeonColor = board[cellNumber].peon;
