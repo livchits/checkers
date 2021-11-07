@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import Points from './components/Points';
 import { Cell, PeonsColor } from './types';
 import getCellBackground from './utils/getCellBackground';
 import getPeon from './utils/getPeon';
@@ -84,17 +85,11 @@ function App() {
       <section className='turn'>
         It's the turn of {colorPlaying.current}
       </section>
-      <section>
-        <h2>Points:</h2>
-        <p>
-          {`White: ${whitePoints}`}
-          <span>{whitePoints === peonsPerColor && 'White wins!'}</span>
-        </p>
-        <p>
-          {`Black: ${blackPoints}`}
-          <span>{blackPoints === peonsPerColor && 'Black wins!'}</span>
-        </p>
-      </section>
+      <Points
+        whitePoints={whitePoints}
+        blackPoints={blackPoints}
+        peonsPerColor={peonsPerColor}
+      />
     </main>
   );
 }
