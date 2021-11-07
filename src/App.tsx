@@ -65,19 +65,21 @@ function App() {
     return setBoard(newBoard);
   };
 
+  const checkersBoard = board.map(
+    ({ cellNumber, peon, backgroundColor, selected }) => (
+      <div
+        key={cellNumber}
+        className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
+        onClick={() => handlePlay(cellNumber)}
+      >
+        {peon}
+      </div>
+    )
+  );
+
   return (
     <main>
-      <section className='board'>
-        {board.map(({ cellNumber, peon, backgroundColor, selected }) => (
-          <div
-            key={cellNumber}
-            className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
-            onClick={() => handlePlay(cellNumber)}
-          >
-            {peon}
-          </div>
-        ))}
-      </section>
+      <section className='board'>{checkersBoard}</section>
       <section className='turn'>It's {colorPlaying.current}'s turn</section>
       <Points
         whitePoints={whitePoints}
