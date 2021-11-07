@@ -78,9 +78,7 @@ function App() {
           </div>
         ))}
       </section>
-      <section className='turn'>
-        It's the turn of {colorPlaying.current}
-      </section>
+      <section className='turn'>It's {colorPlaying.current}'s turn</section>
       <Points
         whitePoints={whitePoints}
         blackPoints={blackPoints}
