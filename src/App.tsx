@@ -72,7 +72,7 @@ function App() {
         className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
         onClick={() => handlePlay(cellNumber)}
       >
-        {peon}
+        {peon && (peon === 'black' ? <div>N</div> : <div>B</div>)}
       </div>
     )
   );
