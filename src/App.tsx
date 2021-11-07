@@ -25,7 +25,6 @@ function App() {
 
   const handlePlay = (cellNumber: number) => {
     const clickedCell = board[cellNumber];
-    const newBoard = [...board];
     const isInvalidSelection =
       (!selectedPeon && clickedCell.peon !== colorPlaying.current) || winner;
 
@@ -34,6 +33,7 @@ function App() {
       return;
     }
 
+    const newBoard = [...board];
     //there isn't a selected peon and there is a peon in the cell. Correct selection
     if (!selectedPeon) {
       newBoard[cellNumber].selected = true;
