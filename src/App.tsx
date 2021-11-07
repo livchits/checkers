@@ -1,25 +1,18 @@
 import * as React from 'react';
 import './App.css';
 import Points from './components/Points';
-import { Cell, PeonsColor } from './types';
-import getCellBackground from './utils/getCellBackground';
-import getPeon from './utils/getPeon';
+import { COLUMNS, ROWS } from './constants';
+import { PeonsColor } from './types';
+import generateInitialBoard from './utils/generateInitialBoard';
 import getPeonsQuantityByColors from './utils/getPeonsQuantityByColor';
 import getValidMoves from './utils/getValidMoves';
 
-const ROWS = 8;
-const COLUMNS = 10;
 const peonsPerColor = (COLUMNS * 3) / 2;
 
-const initialBoard: Cell[] = [...Array(ROWS * COLUMNS)].map((_, index) => ({
-  cellNumber: index,
-  peon: getPeon(index, COLUMNS, ROWS),
-  backgroundColor: getCellBackground(index, COLUMNS),
-  selected: false,
-}));
-
 function App() {
-  const [board, setBoard] = React.useState(initialBoard);
+  const [board, setBoard] = React.useState(() =>
+    generateInitialBoard(ROWS, COLUMNS)
+  );
 
   const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'black');
   const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'white');
