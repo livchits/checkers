@@ -23,6 +23,7 @@ function App() {
 
   const whitePoints = peonsPerColor - getPeonsQuantityByColors(board, 'black');
   const blackPoints = peonsPerColor - getPeonsQuantityByColors(board, 'white');
+  const winner = whitePoints === peonsPerColor || blackPoints === peonsPerColor;
 
   const selectedPeon = board.find(({ selected }) => selected === true);
 
@@ -32,9 +33,11 @@ function App() {
   const handlePlay = (cellNumber: number) => {
     const clickedCell = board[cellNumber];
     const newBoard = [...board];
+    const isInvalidSelection =
+      (!selectedPeon && clickedCell.peon !== colorPlaying.current) || winner;
 
-    //the user clicked on a peon of wrong color or on an empty cell
-    if (!selectedPeon && clickedCell.peon !== colorPlaying.current) {
+    //the user clicked on a peon of wrong color, on an empty cell or there is a winner
+    if (isInvalidSelection) {
       return;
     }
 
