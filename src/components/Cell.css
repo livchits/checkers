@@ -1,0 +1,26 @@
+.bg-light {
+  background-color: papayawhip;
+}
+
+.bg-dark {
+  background-color: darkgoldenrod;
+}
+
+.selected {
+  outline: .2em solid crimson;
+}
+
+.peon {
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  margin: auto;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
