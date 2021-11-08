@@ -28,4 +28,9 @@ h1 {
 
 .turn {
   margin-block: 1em;
+  font-size: 1.5rem;
+}
+
+.turn span {
+  font-weight: bold;
 }

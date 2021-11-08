@@ -75,7 +75,9 @@ function App() {
     <main>
       <h1>Checkers</h1>
       <section className='board'>{checkersBoard}</section>
-      <section className='turn'>{`It's ${colorPlaying.current}'s turn`}</section>
+      <section className='turn'>
+        It&apos;s <span>{colorPlaying.current}</span>&apos;s turn
+      </section>
       <Points
         blackPoints={blackPoints}
         peonsPerColor={peonsPerColor}
