@@ -1,4 +1,4 @@
-import { CellData } from '../types';
+import { CellData } from '../../types';
 import './Cell.css';
 
 interface CellProps {
