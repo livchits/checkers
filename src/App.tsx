@@ -73,6 +73,7 @@ function App() {
 
   return (
     <main>
+      <h1>Checkers</h1>
       <section className='board'>{checkersBoard}</section>
       <section className='turn'>{`It's ${colorPlaying.current}'s turn`}</section>
       <Points
