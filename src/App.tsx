@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './App.css';
+import Cell from './components/Cell';
 import Points from './components/Points';
 import { COLUMNS, ROWS } from './constants';
 import { PeonsColor } from './types';
@@ -66,18 +67,9 @@ function App() {
     return setBoard(newBoard);
   };
 
-  const checkersBoard = board.map(
-    ({ cellNumber, peon, backgroundColor, selected }) => (
-      <div
-        key={cellNumber}
-        aria-hidden='true'
-        className={`cell ${backgroundColor} ${selected ? 'selected' : ''}`}
-        onClick={() => handlePlay(cellNumber)}
-      >
-        {peon && (peon === 'black' ? <div>N</div> : <div>B</div>)}
-      </div>
-    )
-  );
+  const checkersBoard = board.map((cell) => (
+    <Cell key={cell.cellNumber} cellData={cell} onPlay={handlePlay} />
+  ));
 
   return (
     <main>

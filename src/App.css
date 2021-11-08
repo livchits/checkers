@@ -19,18 +19,6 @@ main {
   cursor: pointer;
 }
 
-.bg-light {
-  background-color: papayawhip;
-}
-
-.bg-dark {
-  background-color: darkgoldenrod;
-}
-
-.selected {
-  color: red;
-}
-
 .turn {
   margin-block: 1em;
 }
