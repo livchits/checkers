@@ -1,6 +1,6 @@
-import { Cell } from '../types';
+import { CellData } from '../types';
 
-export default function getValidMoves(cellNumber: number, board: Cell[]) {
+export default function getValidMoves(cellNumber: number, board: CellData[]) {
   const selectedPeonColor = board[cellNumber].peon;
 
   const adjacentMoves: number[] =
