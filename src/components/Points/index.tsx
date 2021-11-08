@@ -1,3 +1,5 @@
+import './Points.css';
+
 interface PointsProps {
   whitePoints: number;
   blackPoints: number;
